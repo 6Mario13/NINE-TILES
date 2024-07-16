@@ -1,0 +1,33 @@
+import { createContext, useEffect, useState } from "react";
+import PropTypes from 'prop-types';
+
+export const AuthContext = createContext();
+
+export const AuthContextProvider = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || null
+  );
+
+  const login = () => {
+    // To do
+    setCurrentUser({
+      id: 1,
+      name: "Mario Markowicz",
+      profilePic: "https://placehold.co/100x100"
+    })
+  }
+
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(currentUser));
+  }, [currentUser]);
+
+  return (
+    <AuthContext.Provider value={{currentUser, login}}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+AuthContextProvider.propTypes = {
+  children: PropTypes.object.isRequired,
+};
