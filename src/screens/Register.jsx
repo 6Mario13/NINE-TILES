@@ -1,7 +1,33 @@
+import axios from "axios"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 
 
 export const Register = () => {
+
+  const [inputs, setInputs] = useState({
+    username:"",
+    email:"",
+    password:"",
+  })
+  const [err, setErr] = useState(null)
+
+  const handleChange = (e) => {
+    setInputs((prev) => ({...prev, [e.target.name]:e.target.value}))
+  }
+
+  const handleClick = async e => {
+    e.preventDefault()
+
+    try{
+      await axios.post("http://localhost:8800/api/auth/register", inputs)
+    }catch(err){
+      setErr(err.response.data)
+    }
+  }
+
+  console.log(err)
+
   return (
     <div className="">
       <div className="flex justify-center p-10 " >
@@ -24,27 +50,29 @@ export const Register = () => {
         <h1 className="text-3xl text-center py-8">Create new account</h1>
         <form className="mx-4 border rounded-3xl space-y-6 p-8" action="#" method="POST">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-            <input id="email" placeholder="example@mail.com" name="email" type="email" autoComplete="email" required className="w-full rounded-2xl py-1.5 pl-3 shadow-md focus:ring-4 focus:ring-inset focus:ring-fuchsia-500  leading-6 bg-gray-300"/>
+            <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">Username</label>
+            <input id="username" type="text" name="username" onChange={handleChange} placeholder="e.g. Tileman" className="w-full rounded-2xl py-1.5 pl-3 shadow-md focus:ring-4 focus:ring-inset focus:ring-fuchsia-500  leading-6 bg-gray-300"/>
           </div>
 
           <div>
-            <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Nickname</label>
-            <input id="first-name" type="text" name="first-name" placeholder="e.g. Tileman" autoComplete="given-name" className="w-full rounded-2xl py-1.5 pl-3 shadow-md focus:ring-4 focus:ring-inset focus:ring-fuchsia-500  leading-6 bg-gray-300"/>
+            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+            <input id="email" placeholder="example@mail.com" type="email" name="email" onChange={handleChange} required className="w-full rounded-2xl py-1.5 pl-3 shadow-md focus:ring-4 focus:ring-inset focus:ring-fuchsia-500  leading-6 bg-gray-300"/>
           </div>
 
           <div >
             <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
-            <input id="password" name="password" type="password" placeholder="********" autoComplete="current-password" required className="w-full rounded-2xl py-1.5 pl-3 shadow-md focus:ring-4 focus:ring-inset focus:ring-fuchsia-500  leading-6 bg-gray-300"/>
+            <input id="password" type="password" name="password" onChange={handleChange} placeholder="********"  required className="w-full rounded-2xl py-1.5 pl-3 shadow-md focus:ring-4 focus:ring-inset focus:ring-fuchsia-500  leading-6 bg-gray-300"/>
           </div>
 
-          <div>
+          {/* <div>
             <label htmlFor="confpassword" className="block text-sm font-medium leading-6 text-gray-900">Confirm password</label>
             <input id="confpassword" name="confpassword" type="password" autoComplete="current-password" required className="w-full rounded-2xl py-1.5 pl-3 shadow-md focus:ring-4 focus:ring-inset focus:ring-fuchsia-500  leading-6 bg-gray-300"/>
-          </div>
+          </div> */}
           <div >
+            {err && err}
           <Link to="/" className="flex justify-center p-6">
-            <button type="submit" className="w-1/4 rounded-2xl bg-gray-600 px-3 py-2 text-sm font-bold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-900">Sign in</button>
+            
+            <button onClick={handleClick} type="submit" className="w-1/4 rounded-2xl bg-gray-600 px-3 py-2 text-sm font-bold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-900">Sign in</button>
           </Link>
           </div>
           

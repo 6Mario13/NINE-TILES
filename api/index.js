@@ -5,9 +5,24 @@ import userRoutes from "./routes/users.js"
 import postRoutes from "./routes/posts.js"
 import commentRoutes from "./routes/comments.js"
 import likeRoutes from "./routes/likes.js"
+import cors from "cors"
+import cookieParser from "cookie-parser";
 
-// middlewares
-app.use(e.json())
+//middlewares
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header("Access-Control-Allow-Origin", "http://localhost:5173"); 
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
+
+app.use(e.json());
+app.use(cors({
+  origin: "http://localhost:5173", // Ustaw tutaj właściwy adres URL
+  credentials: true
+}));
+app.use(cookieParser());
 
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)

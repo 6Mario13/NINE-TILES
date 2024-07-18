@@ -18,7 +18,7 @@ export const SideBar = () => {
               <p className='hidden sm:block'>Friends</p>
             </div>
           </Link>
-          <Link  to="/">
+          <Link  to="/home">
             <div className="flex items-center gap-3 hover:text-fuchsia-500">
               <TfiLayoutGrid3 className="size-8" />
               <p className='hidden sm:block' >Wall</p>
