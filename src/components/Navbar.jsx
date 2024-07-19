@@ -10,7 +10,7 @@ export const Navbar = ({darkMode, toggleDarkMode}) => {
   const { currentUser } = useContext(AuthContext)
 
   return (
-    <div className="flex items-center justify-between  p-2 md:px-10 bg-gray-200 dark:bg-gray-700 shadow-lg sticky top-0 ">
+    <div className="flex items-center justify-between  p-2 sm:px-10 bg-gray-200 dark:bg-gray-700 shadow-lg sticky top-0 ">
       <div className="flex items-center gap-2 ">
         <div className="size-[50px] bg-gray-200">
           <svg width="50" height="50" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,7 +34,7 @@ export const Navbar = ({darkMode, toggleDarkMode}) => {
         <div onClick={toggleDarkMode}>{darkMode ? <MdOutlineLightMode className=" size-8 hover:text-fuchsia-500"/> :<IoMdMoon className=" size-8 hover:text-fuchsia-500"/>}</div>
         <div><PiEnvelopeOpenLight className="size-10  hover:text-fuchsia-500"/></div>
         <img className="w-[40px] rounded-full" src={currentUser.profilePic} />
-        <div className="hidden sm:block text-xl">{currentUser.name}</div>
+        <div className="hidden sm:block text-xl">{currentUser.username}</div>
       </div>
     </div>
   )

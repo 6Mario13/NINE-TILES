@@ -13,8 +13,8 @@ export const Profile = () => {
       <div className="flex flex-col items-center justify-center w-full my-14">
         <div className="flex flex-col items-center justify-center w-full mb-14">
           <img className="w-[200px] rounded-full shadow-lg object-cover" src={currentUser.profilePic} />
-          <div className="text-3xl py-10">{currentUser.name}</div>
-          <button className="rounded-2xl bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-900">Edit</button>
+          <div className="text-4xl py-10 text-gray-700 font-semibold dark:text-gray-100">{currentUser.username}</div>
+          <button className="rounded-2xl bg-gray-600 text-xl px-8 py-1 text-gray-100 dark:text-gray-700 dark:bg-gray-200 shadow-sm hover:bg-fuchsia-500 dark:hover:bg-fuchsia-500 dark:hover:text-gray-100">Edit</button>
         </div>
         {/* <div className='flex flex-col gap-8 text-2xl m-20'>
           <div onClick={() => {setIsExpanded(!isExpanded)}} className="flex items-center gap-8 ">

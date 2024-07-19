@@ -22,6 +22,7 @@ export const register = (req,res) => {
       hashedPassword
     ];
 
+    // eslint-disable-next-line no-unused-vars
     db.query(q,[values], (err, data)=> {
       if (err) return res.status(500).json(err);
       return res.status(200).json("User has been created.")
@@ -46,6 +47,7 @@ export const login = (req,res) => {
     const token = jwt.sign({ id: data[0].id}, "secretkey")
 
   
+    // eslint-disable-next-line no-unused-vars
     const { password, ...other} = data[0]
 
     res

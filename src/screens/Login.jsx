@@ -1,8 +1,7 @@
 import { Logo } from "../Logo"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useContext, useState } from "react"
 import { AuthContext } from "../context/authContext"
-
 
 export const Login = () => {
 
@@ -11,6 +10,8 @@ export const Login = () => {
     password:"",
   })
   const [err, setErr] = useState(null)
+
+  const navigate = useNavigate()
 
   const handleChange = async (e) => {
     setInputs((prev) => ({...prev, [e.target.name]:e.target.value}))
@@ -21,7 +22,8 @@ export const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await login(inputs);
+      await login(inputs)
+      navigate("/")
     } catch (err) {
       if (err.response && err.response.data) {
         setErr(err.response.data);
@@ -31,7 +33,7 @@ export const Login = () => {
     }
   };
   return (
-    <div className="pt-12 mx-auto bg-gray-100 h-screen">
+    <div className="pt-12 mx-auto bg-gray-100 pb-20">
       <div className="flex justify-center">
         <Logo className="" />
       </div>
@@ -39,7 +41,7 @@ export const Login = () => {
         <div className="border rounded-3xl p-8 md:p-12  drop-shadow-lg bg-white">
           <h1 className="text-3xl grid border-b-2 pb-3">Welcome to<span className="text-fuchsia-600">NINE TILES</span></h1>
           <h2 className="text-2xl py-2">How it works?</h2>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non sit, cumque animi vel provident incidunt autem iste officia dolore veniam, natus fugiat magnam minus!</p>
+          <p>Is 9 a lot or a little? This is how much space we give you to express yourself - nine tiles that say something about you. Now it is up to you what it will be. Create a collage of images that simply express you</p>
         </div>
         <div className="border rounded-3xl p-8 md:p-12 drop-shadow-lg bg-white">
           <h1 className="text-3xl grid border-b-2 pb-3">Log in</h1>
@@ -61,11 +63,13 @@ export const Login = () => {
               <div className="mt-2">
                 <input id="password" name="password" onChange={handleChange} type="password" className="w-full rounded-2xl py-2 pl-3 shadow-md focus:ring-4 focus:ring-inset focus:ring-fuchsia-500  leading-6 bg-gray-300"/>
               </div>
+              <div className="text-fuchsia-600 my-8">
+              {err && err}
+              </div>
             </div>
-            {err && err}
-            
-              <button onClick={handleLogin}  className="w-1/3 rounded-2xl bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-900">Login</button>
-            
+            <div className="flex justify-center py-6">
+              <button onClick={handleLogin}  className="w-1/3  rounded-2xl bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-900">Login</button>
+            </div>
           </form>
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member?

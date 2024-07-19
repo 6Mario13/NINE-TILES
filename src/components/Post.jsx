@@ -12,17 +12,17 @@ export const Post = ({post}) => {
   const liked = false;
 
   return (
-    <div className="flex flex-col dark:text-gray-200 bg-gray-200 dark:bg-gray-700  m-8 p-8">
+    <div className="flex flex-col dark:text-gray-200 bg-white shadow-md rounded-md dark:bg-gray-700 mx-10 my-4 p-8">
       <Link to={`/profile/${post.userId}`}>
         <div className="flex items-center gap-3 pb-6">
-          <img src={post.profilePic} alt="" />
+          <img className="rounded-full" src={post.profilePic} alt="" />
           <span className="text-xl">{post.name}</span>
         </div>
       </Link>
       <div>
         <img src={post.img} alt="" />
       </div>
-      <div className="flex  gap-4">
+      <div className="flex gap-4">
         <div className="flex gap-2 items-center py-6">
           {liked ? <FaRegHeart className="size-6" /> : <FaHeart className="size-6" />}
           Likes
