@@ -70,7 +70,7 @@ export const Register = () => {
           </div> */}
           <div >
             {err && err}
-          <div  className="flex justify-center p-6">
+            <div  className="flex justify-center p-6">
             
             <button onClick={handleClick} type="submit" className="w-1/3 rounded-2xl bg-gray-600 px-3 py-2 text-sm font-bold leading-6 text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-900">Sign in</button>
           </div>

@@ -14,7 +14,7 @@ export const register = (req,res) => {
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 
-    const q = "INSERT INTO users (`username`,`email`,`password`) VALUE (?)";
+    const q = "INSERT INTO users (`username`,`email`,`password`) VALUES (?)";
 
     const values = [
       req.body.username,
@@ -22,8 +22,8 @@ export const register = (req,res) => {
       hashedPassword
     ];
 
-    // eslint-disable-next-line no-unused-vars
-    db.query(q,[values], (err, data)=> {
+    
+    db.query(q,[values], (err,data)=> {
       if (err) return res.status(500).json(err);
       return res.status(200).json("User has been created.")
     });
