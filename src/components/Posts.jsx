@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { Post } from "./Post"
 import { MakeRequest } from '../Axios'
+
 export const Posts = () => {
   const { error, isPending, data } = useQuery({
     queryKey: ['posts'],

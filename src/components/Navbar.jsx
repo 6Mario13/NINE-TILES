@@ -1,9 +1,8 @@
-import { PiEnvelopeOpenLight } from "react-icons/pi";
 import { IoMdMoon } from "react-icons/io";
 import { MdOutlineLightMode } from "react-icons/md";
 import PropTypes from 'prop-types';
 import { useContext } from "react";
-import { AuthContext } from "../context/authContext";
+import { AuthContext } from "../context/AuthContext";
 
 export const Navbar = ({darkMode, toggleDarkMode}) => {
 
@@ -32,7 +31,6 @@ export const Navbar = ({darkMode, toggleDarkMode}) => {
       </div>
       <div className="flex items-center gap-6 text-gray-700 dark:text-gray-200">
         <div onClick={toggleDarkMode}>{darkMode ? <MdOutlineLightMode className=" size-8 hover:text-fuchsia-500"/> :<IoMdMoon className=" size-8 hover:text-fuchsia-500"/>}</div>
-        <div><PiEnvelopeOpenLight className="size-10  hover:text-fuchsia-500"/></div>
         <img className="w-[40px] rounded-full" src={currentUser.profilePic} />
         <div className="hidden sm:block text-xl">{currentUser.username}</div>
       </div>

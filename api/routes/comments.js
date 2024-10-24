@@ -1,9 +1,10 @@
 import e from "express";
-import {  } from "../controllers/comment.js";
+import { getComment, addComment } from "../controllers/comment.js";
 
 const router = e.Router()
 
-router.get("", )
+router.get("/", getComment )
+router.post("/", addComment )
 
 
 export default router

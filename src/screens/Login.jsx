@@ -1,12 +1,12 @@
 import { Logo } from "../Logo"
 import { Link, useNavigate } from "react-router-dom"
 import { useContext, useState } from "react"
-import { AuthContext } from "../context/authContext"
+import { AuthContext } from "../context/AuthContext"
 
 export const Login = () => {
 
   const [inputs, setInputs] = useState({
-    username:"",
+    email:"",
     password:"",
   })
   const [err, setErr] = useState(null)
@@ -47,9 +47,9 @@ export const Login = () => {
           <h1 className="text-3xl grid border-b-2 pb-3">Log in</h1>
           <form className="space-y-6 pt-6" action="#" method="POST">
             <div>
-              <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">User name</label>
+              <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">Email</label>
               <div className="mt-2">
-                <input id="username" name="username" onChange={handleChange} type="text" className="w-full rounded-2xl py-2 pl-3 shadow-md focus:ring-4 focus:ring-inset focus:ring-fuchsia-500  leading-6 bg-gray-300"/>
+                <input id="email" name="email" onChange={handleChange} type="text" className="w-full rounded-2xl py-2 pl-3 shadow-md focus:ring-4 focus:ring-inset focus:ring-fuchsia-500  leading-6 bg-gray-300"/>
               </div>
             </div>
 

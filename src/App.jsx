@@ -13,7 +13,7 @@ import {
   Outlet,
   RouterProvider,
 } from "react-router-dom";
-import { AuthContext } from "./context/authContext";
+import { AuthContext } from "./context/AuthContext";
 import {
   QueryClient,
   QueryClientProvider,
