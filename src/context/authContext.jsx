@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
+import axios from "axios";
 
 export const AuthContext = createContext();
 
@@ -8,13 +9,11 @@ export const AuthContextProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("user")) || null
   );
 
-  const login = () => {
-    // To do
-    setCurrentUser({
-      id: 1,
-      name: "Mario Markowicz",
-      profilePic: "https://placehold.co/100x100"
+  const login = async (inputs) => {
+    const res = await axios.post("http://localhost:8800/api/auth/login", inputs, {
+      withCredentials: true,
     })
+    setCurrentUser(res.data)
   }
 
   useEffect(() => {
@@ -29,5 +28,5 @@ export const AuthContextProvider = ({ children }) => {
 };
 
 AuthContextProvider.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.node.isRequired,
 };

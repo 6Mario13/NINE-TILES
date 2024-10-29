@@ -13,9 +13,13 @@ import {
   Outlet,
   RouterProvider,
 } from "react-router-dom";
-import { AuthContext } from "./context/authContext";
-// import PropTypes from 'prop-types';
-// import { Route, Switch } from 'wouter';
+import { AuthContext } from "./context/AuthContext";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
+import PropTypes from 'prop-types';
+
 
 const App = () => {
 
@@ -35,28 +39,34 @@ const App = () => {
 
   const {currentUser} = useContext(AuthContext);
 
+  const queryClient = new QueryClient()
+
   const Layout = () => {
     return (
-      <div className={darkMode ? 'dark flex flex-col' : 'flex flex-col'}>
-        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        <div className="flex flex-col sm:flex-row bg-fuchsia-50 dark:bg-gray-500">
-          <SideBar />
-          <Outlet />
+      <QueryClientProvider client={queryClient}>
+        <div className={darkMode ? 'dark flex flex-col' : 'flex flex-col'}>
+          <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+          <div className="flex flex-col sm:flex-row bg-fuchsia-50 dark:bg-gray-500">
+            <SideBar />
+            <Outlet />
+          </div>
         </div>
-      </div>
-
+      </QueryClientProvider>
     )
   }
   
   // Login is required
-  
-  // eslint-disable-next-line react/prop-types
+
   const ProtectedRoute = ({children}) => {
     if(!currentUser){
       return <Navigate to="/login"/>
     }
     return children
     }
+
+    ProtectedRoute.propTypes = {
+      children: PropTypes.node.isRequired,
+    };
 
   const router = createBrowserRouter([
     {
@@ -110,9 +120,5 @@ const App = () => {
 };
  
 export default App;
-
-// ProtectedRoute.propTypes = {
-//   children: PropTypes.object.isRequired,
-// };
 
 

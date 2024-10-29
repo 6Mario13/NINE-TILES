@@ -1,4 +1,5 @@
 import { Posts } from "../components/Posts"
+import Share from "../components/Share"
 
 
 export const Home = () => {
@@ -8,6 +9,7 @@ export const Home = () => {
   
   return (
     <div className="">
+      <Share/>
       <Posts/>
     </div>
     
